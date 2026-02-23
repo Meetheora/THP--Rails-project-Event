@@ -12,4 +12,10 @@ default from: ENV["GMAIL_USERNAME"]
     mail(to: @user.email, subject: 'Bienvenue chez nous !') 
   end
 
+  def attendance_email(attendance)
+    @attendance = attendance
+    @admin = @attendance.event.admin #variable qui contient le user qui a créé l'event
+    @url  = 'http://monsite.fr/login'
+    mail(to: @admin.email, subject: 'Nouveau participant inscrit !')
+  end
 end
