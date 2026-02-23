@@ -5,6 +5,7 @@ group :development do
   gem "binding_of_caller"
 end
 gem "letter_opener"
+gem "table_print"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.4"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
