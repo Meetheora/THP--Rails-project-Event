@@ -1,4 +1,5 @@
 class EventsController < ApplicationController
+  before_action :authenticate_user!, only: [:new, :create]
   def index
     @events = Event.all
   end
@@ -9,6 +10,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @event.admin = current_user
     if @event.save
       redirect_to root_path, notice: "Événement créé !"
     else
