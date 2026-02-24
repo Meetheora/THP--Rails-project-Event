@@ -1,0 +1,12 @@
+<div class="container mt-5">
+  <div class="card shadow p-4">
+    <h2 class="mb-3">👤 Mon profil</h2>
+
+    <p><strong>Email :</strong> <%= @user.email %></p>
+    <p><strong>Inscrit depuis :</strong> <%= @user.created_at.strftime("%d %B %Y") %></p>
+
+    <hr>
+
+    <%= link_to "Modifier mon profil", edit_user_registration_path, class: "btn btn-primary" %>
+  </div>
+</div>
