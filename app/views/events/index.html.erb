@@ -1,0 +1,27 @@
+<div class="container my-5">
+  <h1 class="text-center fw-bold mb-4">🎉 Événements à venir</h1>
+
+  <div class="row g-4">
+    <% @events.each do |event| %>
+      <div class="col-md-4">
+        <div class="card shadow border-0 rounded-4 h-100">
+          <div class="card-body">
+            <h5 class="card-title fw-bold"><%= event.title %></h5>
+
+            <p class="text-muted">
+              <%= event.start_date.strftime("%d %B %Y à %H:%M") if event.start_date %>
+            </p>
+
+            <p><%= truncate(event.description, length: 100) %></p>
+
+            <p class="fw-bold text-primary">
+              <%= event.price.present? ? "#{event.price} €" : "Gratuit" %>
+            </p>
+
+            <%= link_to "Voir l'événement", event_path(event), class: "btn btn-outline-primary btn-sm" %>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
