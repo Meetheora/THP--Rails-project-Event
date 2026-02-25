@@ -4,7 +4,8 @@ User.create!(
   first_name: "John",
   last_name: "Doe",
   email: "boitedetestpourTHP@yopmail.com",
-  encrypted_password: "password123", # will be modified with Devise
+  password:"password123",
+  password_confirmation: "password123",
   description: "Créateur d'événements passionné."
 )
 
@@ -12,7 +13,8 @@ User.create!(
   first_name: "Steve",
   last_name: "Jobs",
   email: "boitedetestpourTHP2@yopmail.com",
-  encrypted_password: "password123",
+  password:"password123",
+  password_confirmation: "password123",
   description: "J'adore participer aux événements de ma ville !"
 )
 

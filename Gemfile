@@ -6,6 +6,8 @@ group :development do
 end
 gem "table_print"
 gem "dotenv-rails"
+gem "stripe"
+gem "faker"
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem "rails", "~> 8.0.4"
 # The modern asset pipeline for Rails [https://github.com/rails/propshaft]
