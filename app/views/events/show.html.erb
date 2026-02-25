@@ -22,7 +22,10 @@
 
           <h5>Description</h5>
           <p><%= simple_format(@event.description) %></p>
-
+          <div class="d-flex align-items-center mb-3">
+              <span class="badge bg-primary me-2">Organisateur</span>
+              <strong><%= @event.admin.email %></strong>
+          </div>
           <div class="d-flex justify-content-between mt-4">
             <%= link_to "Retour aux événements", root_path, class: "btn btn-outline-secondary" %>
             <% if user_signed_in? %>
