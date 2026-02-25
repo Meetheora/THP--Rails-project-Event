@@ -26,10 +26,11 @@
               <span class="badge bg-primary me-2">Organisateur</span>
               <strong><%= @event.admin.email %></strong>
           </div>
-          <div class="d-flex justify-content-between mt-4">
-            <%= link_to "Retour aux événements", root_path, class: "btn btn-outline-secondary" %>
-            <% if user_signed_in? %>
-              <%= link_to "Modifier cet événement", edit_event_path(@event), class: "btn btn-warning" %>
+          <div class="d-flex justify-content-end gap-2 mt-4">
+            <%= link_to "Retour aux événements", root_path, class: "btn btn-outline-secondary, me-auto" %>
+            <% if user_signed_in? && current_user == @event.admin %>
+              <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-warning" %>
+              <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
             <% end %>
           </div>
         </div>

@@ -1,5 +1,7 @@
 class EventsController < ApplicationController
-  before_action :authenticate_user!, only: [:new, :create]
+  before_action :set_event, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authorize_admin!, only: [:edit, :update, :destroy]
   def index
     @events = Event.all
   end
@@ -31,9 +33,23 @@ class EventsController < ApplicationController
       render :edit
     end
   end
+  def destroy
+  @event.destroy
+  redirect_to root_path, notice: "Événement supprimé"
+  end
   private
 
   def event_params
     params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location)
+  end
+
+  def set_event
+  @event = Event.find(params[:id])
+  end
+
+  def authorize_admin!
+    unless current_user == @event.admin
+      redirect_to root_path, alert: "Tu n'es pas l'organisateur de cet évènement."
+    end
   end
 end
