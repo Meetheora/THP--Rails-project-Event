@@ -7,7 +7,8 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  post "attendance", to: "attendances#create"
-  resources :events
+  resources :events do
+    resources :attendances, only: [:new, :create, :index, :show]
+  end
   resources :users, only: [:show]
 end
