@@ -20,7 +20,19 @@ class EventsController < ApplicationController
     end
   end
   def show
-  @event = Event.find(params[:id])
+    @event = Event.find(params[:id])
+    if params[:success] == "true"
+      # On vérifie qu'il n'est pas déjà inscrit pour éviter les doublons si on recharge la page
+      unless @event.participants.include?(current_user)
+        Attendance.create!(
+          user: current_user, 
+          event: @event, 
+          stripe_customer_id: "cus_id_temporaire" # (ou récupéré dynamiquement via Stripe)
+        )
+      end
+      # On redirige proprement vers la page de l'événement pour nettoyer l'URL (enlever le ?success=true)
+      redirect_to event_path(@event), notice: "Paiement réussi ! Tu participes désormais à cet événement."
+    end
   end
   def edit
   @event = Event.find(params[:id])

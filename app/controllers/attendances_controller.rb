@@ -21,7 +21,7 @@ def create
     }],
     mode: 'payment',
     # Les URL de redirection après le paiement :
-    success_url: root_url + "?success=true",
+    success_url: event_url + "?success=true",
     cancel_url: root_url + "?canceled=true",
   )
     
