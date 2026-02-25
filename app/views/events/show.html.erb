@@ -29,7 +29,7 @@
           <div class="d-flex justify-content-end gap-2 mt-4">
             <%= link_to "Retour aux événements", root_path, class: "btn btn-outline-secondary, me-auto" %>
             <% if user_signed_in? && current_user != @event.admin && !@event.participants.include?(current_user) %>
-              <%= button_to "Rejoindre l'évènement", checkout_path(event_id: @event.id), method: :post, data: { turbo: false }, class: "btn btn-success" %>
+              <%= button_to "Rejoindre l'évènement", attendance_path(event_id: @event.id), method: :post, data: { turbo: false }, class: "btn btn-success" %>
             <% end %>
             <% if user_signed_in? && current_user == @event.admin %>
               <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-warning" %>

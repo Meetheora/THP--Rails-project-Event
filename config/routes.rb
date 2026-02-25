@@ -7,7 +7,7 @@ Rails.application.routes.draw do
 
   devise_for :users
 
-  post "checkout", to: "checkout#create"
+  post "attendance", to: "attendances#create"
   resources :events
   resources :users, only: [:show]
 end
