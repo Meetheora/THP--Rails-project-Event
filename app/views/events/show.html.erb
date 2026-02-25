@@ -32,8 +32,7 @@
               <%= link_to "Rejoindre l'évènement", new_event_attendance_path(@event), data: { turbo: false }, class: "btn btn-success" %>
             <% end %>
             <% if user_signed_in? && current_user == @event.admin %>
-              <%= link_to "Modifier", edit_event_path(@event), class: "btn btn-warning" %>
-              <%= link_to "Supprimer", event_path(@event), method: :delete, data: { confirm: "Êtes-vous sûr ?" }, class: "btn btn-danger" %>
+              <%= link_to "Espace Admin", event_attendances_path(@event), class: "btn btn-warning" %>
             <% end %>
           </div>
         </div>

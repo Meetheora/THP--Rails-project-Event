@@ -3,10 +3,17 @@ def new
   @event = Event.find(params[:event_id])
 end
 def index
+  @event = Event.find(params[:event_id])
+  redirect_to root_path unless current_user == @event.admin
+  @attendances = @event.attendances
 end
 def create
   @event = Event.find(params[:event_id])
-  
+  if @event.is_free?
+    redirect_to event_path(@event, success: true), notice: "Inscription confirmée !"
+  return
+  end
+
   session = Stripe::Checkout::Session.create(
     payment_method_types: ['card'],
     line_items: [{
@@ -21,7 +28,7 @@ def create
     }],
     mode: 'payment',
     # Les URL de redirection après le paiement :
-    success_url: event_url + "?success=true",
+    success_url: event_url(@event) + "?success=true",
     cancel_url: root_url + "?canceled=true",
   )
     

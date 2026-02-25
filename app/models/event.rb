@@ -1,17 +1,20 @@
 class Event < ApplicationRecord
   belongs_to :admin, class_name: "User"
-  has_many :attendances
+  has_many :attendances, dependent: :destroy
   has_many :participants, through: :attendances, source: :user
   validates :start_date, presence: true
   validates :duration, presence: true, numericality: {greater_than: 0}
   validates :title, presence: true, length: {in: 5..140}
   validates :description, presence: true, length: {in: 20..1000}
-  validates :price, presence: true, numericality: {in: 1..1000}
+  validates :price, presence: true, numericality: {in: 0..1000}
   validates :location, presence: true
   
   validate :start_date_cannot_be_in_the_past
   validate :duration_multiple_of_five
 
+  def is_free?
+  price == 0
+  end 
   private
   def start_date_cannot_be_in_the_past
     return if start_date.blank?
