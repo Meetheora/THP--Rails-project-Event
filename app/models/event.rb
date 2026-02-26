@@ -12,10 +12,16 @@ class Event < ApplicationRecord
   
   validate :start_date_cannot_be_in_the_past
   validate :duration_multiple_of_five
+  validate :photo_presence
 
   def is_free?
   price == 0
-  end 
+  end
+
+  def photo_presence
+    errors.add(:photo, "Veuillez uploader une photo") unless photo.attached? #errors is an ActiveModel object
+  end
+
   private
   def start_date_cannot_be_in_the_past
     return if start_date.blank?
