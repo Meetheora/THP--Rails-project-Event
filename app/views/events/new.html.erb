@@ -45,6 +45,11 @@
               </div>
             </div>
 
+            <div class="mb-3">
+              <%= f.label :photo %>
+              <%= f.file_field :photo, class: "form-control" %>
+            </div>
+
             <div class="d-grid gap-2 mt-4">
               <%= f.submit "Valider et créer l'événement", class: "btn btn-primary btn-lg" %>
             </div>
