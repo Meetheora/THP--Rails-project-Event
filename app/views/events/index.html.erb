@@ -1,27 +1,70 @@
-<div class="container my-5">
-  <h1 class="text-center fw-bold mb-4">🎉 Événements à venir</h1>
-
-  <div class="row g-4">
-    <% @events.each do |event| %>
-      <div class="col-md-4">
-        <div class="card shadow border-0 rounded-4 h-100">
-          <div class="card-body">
-            <h5 class="card-title fw-bold"><%= event.title %></h5>
-
-            <p class="text-muted">
-              <%= event.start_date.strftime("%d %B %Y à %H:%M") if event.start_date %>
-            </p>
-
-            <p><%= truncate(event.description, length: 100) %></p>
-
-            <p class="fw-bold text-primary">
-              <%= event.price.present? ? "#{event.price} €" : "Gratuit" %>
-            </p>
-
-            <%= link_to "Voir l'événement", event_path(event), class: "btn btn-outline-primary btn-sm" %>
+<header class="bg-dark py-5">
+  <div class="container px-5">
+    <div class="row gx-5 justify-content-center">
+      <div class="col-lg-6">
+        <div class="text-center my-5">
+          <!-- Titre et sous-titre adaptés à ton projet d'événements -->
+          <h1 class="display-5 fw-bolder text-white mb-2">Les meilleurs événements de ta ville</h1>
+          <p class="lead text-white-50 mb-4">Découvre les événements près de chez toi, crée les tiens et rejoins notre communauté pour ne plus jamais t'ennuyer !</p>
+          
+          <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
+            <!-- Bouton principal : Créer un événement -->
+            <%= link_to "Créer un événement", new_event_path, class: "btn btn-primary btn-lg px-4 me-sm-3" %>
+            
+            <!-- Bouton secondaire adaptatif (Devise) -->
+            <% if user_signed_in? %>
+              <%= link_to "Mon profil", user_path(current_user), class: "btn btn-outline-light btn-lg px-4" %>
+            <% else %>
+              <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-outline-light btn-lg px-4" %>
+            <% end %>
           </div>
         </div>
       </div>
-    <% end %>
+    </div>
   </div>
-</div>
+</header>
+<!-- Section Événements -->
+<section class="py-5 border-bottom" id="features">
+  <div class="container px-5 my-5">
+    <div class="text-center mb-5">
+      <h2 class="fw-bolder">🎉 Événements à venir</h2>
+    </div>
+
+    <div class="row gx-5">
+      <% @events.each do |event| %>
+        <div class="col-lg-4 mb-5">
+          <!-- Ajout de la structure Card avec un fond (bg-light), une ombre (shadow-sm) et des bords arrondis -->
+          <div class="card h-100 border-0 shadow-sm bg-light rounded-4">
+            <div class="card-body p-4">
+              
+              <!-- L'icône du template conservée -->
+              <div class="feature bg-primary bg-gradient text-white rounded-3 mb-4">
+                <i class="bi bi-calendar-event"></i>
+              </div>
+              
+              <h2 class="h5 fw-bolder"><%= event.title %></h2>
+              
+              <p class="text-muted mb-1 small">
+                <%= event.start_date.strftime("%d %B %Y à %H:%M") if event.start_date %>
+              </p>
+              
+              <p class="fw-bold text-primary mb-3">
+                <%= event.is_free? ? "Gratuit" : "#{event.price} €" %>
+              </p>
+              
+              <!-- Ta description avec le length: 50 -->
+              <p class="text-muted text-break mb-4">
+                <%= truncate(event.description, length: 30) %>
+              </p>
+              
+              <!-- Le bouton transformé : on remplace "text-decoration-none" par "btn btn-primary" -->
+              <%= link_to event_path(event), class: "btn btn-primary w-100" do %>
+                Voir l'événement <i class="bi bi-arrow-right ms-2"></i>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</section>

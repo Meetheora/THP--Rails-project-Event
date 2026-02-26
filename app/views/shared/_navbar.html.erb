@@ -1,58 +1,60 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
+  <!-- 1. Ajout de px-5 pour respecter les marges du thème -->
+  <div class="container px-5">
+    
+    <!-- Ton logo personnalisé (conservé à l'identique) -->
     <%= link_to image_tag("EventCity-logo2.png", alt: "logo", width: "100", srcset: { 'EventCity-logo2.png' => '1x', 'EventCity-logo2.png' => '2x' }), root_path, class: "navbar-brand" %>
 
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNavbar">
+    <!-- 2. Bouton burger avec l'ID cible du thème -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <div class="collapse navbar-collapse" id="mainNavbar">
-      <ul class="navbar-nav me-auto">
+    <!-- Menu collapse avec le bon ID -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+      <!-- 3. Rassemblement de tous les liens dans une seule liste alignée à droite (ms-auto) -->
+      <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+        
         <li class="nav-item">
           <%= link_to "Accueil", root_path, class: "nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Créer un événement", new_event_path, class: "nav-link" %>
         </li>
-      </ul>
 
-      <ul class="navbar-nav ms-auto">
+        <!-- Logique Devise avec tes menus déroulants -->
         <% if user_signed_in? %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownUser" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               Mon profil
             </a>
 
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownUser">
               <li>
                 <%= link_to "Mon profil", user_path(current_user), class: "dropdown-item" %>
               </li>
-
               <li>
                 <%= link_to "Modifier mon compte", edit_user_registration_path, class: "dropdown-item" %>
               </li>
-
               <li><hr class="dropdown-divider"></li>
-
               <li>
-                <%= link_to "Se déconnecter",
-                            destroy_user_session_path,
-                            data: { turbo_method: :delete },
-                            class: "dropdown-item text-danger" %>
+                <%= link_to "Se déconnecter", destroy_user_session_path, data: { turbo_method: :delete }, class: "dropdown-item text-danger" %>
               </li>
             </ul>
           </li>
         <% else %>
           <li class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownAuth" role="button" data-bs-toggle="dropdown" aria-expanded="false">
               S'inscrire / Se connecter
             </a>
-            <ul class="dropdown-menu dropdown-menu-end">
+            <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownAuth">
               <li><%= link_to "S'inscrire", new_user_registration_path, class: "dropdown-item" %></li>
               <li><%= link_to "Se connecter", new_user_session_path, class: "dropdown-item" %></li>
             </ul>
           </li>
         <% end %>
+
       </ul>
     </div>
   </div>
