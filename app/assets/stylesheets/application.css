@@ -2,3 +2,8 @@ body {
   background: #f8fafc;
   font-family: "Inter", system-ui, sans-serif;
 }
+
+.custom-navbar {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  backdrop-filter: blur(6px);
+}
