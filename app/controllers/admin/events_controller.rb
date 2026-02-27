@@ -22,12 +22,12 @@ class Admin::EventsController < ApplicationController
 
   def destroy
   @event.destroy
-  redirect_to admin_event_path, notice: "Événement supprimé"
+  redirect_to admin_events_path, notice: "Événement supprimé"
   end
 
   private
 
   def event_params #add validated attribute
-    params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location, :photo :validated)
+    params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location, :photo, :validated)
   end
 end

@@ -21,4 +21,24 @@ default from: ENV["GMAIL_USERNAME"]
 
     mail(to: @admin.email, subject: 'Nouveau participant inscrit !')
   end
+
+    # Mail de validation d'événement
+  def event_validated(event)
+    @event = event
+    @user = @event.admin
+    mail(
+      to: @user.email,
+      subject: "Votre événement a été validé ! 🎉"
+    )
+  end
+
+  # Mail de refus d'événement
+  def event_rejected(event)
+    @event = event
+    @user = @event.admin
+    mail(
+      to: @user.email,
+      subject: "Votre événement n'a pas été validé ❌"
+    )
+  end
 end
