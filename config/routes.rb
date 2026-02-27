@@ -17,8 +17,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get "dashboard/index"
     root "dashboard#index"
-    resources :users
-    resources :events
+    resources :users, except: [:new, :create]
+    resources :events, except: [:new, :create]
     resources :event_submissions, only: [:index, :show, :edit, :update]
   end
 end
