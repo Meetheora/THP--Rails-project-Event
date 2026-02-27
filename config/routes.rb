@@ -15,7 +15,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "dashboard/index"
     root "dashboard#index"
     resources :users, except: [:new, :create]
     resources :events, except: [:new, :create]
