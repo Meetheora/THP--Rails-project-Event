@@ -1,4 +1,5 @@
 class Admin::EventsController < Admin::BaseController
+before_action :set_event, only: [:show, :edit, :update, :destroy]
   def index
     @events = Event.all
   end
@@ -26,6 +27,10 @@ class Admin::EventsController < Admin::BaseController
   end
 
   private
+
+  def set_event
+    @event = Event.find(params[:id])
+  end
 
   def event_params #add validated attribute
     params.require(:event).permit(:title, :start_date, :duration, :description, :price, :location, :photo, :validated)

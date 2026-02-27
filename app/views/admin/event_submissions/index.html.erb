@@ -1,5 +1,3 @@
-<!-- app/views/admin/event_submissions/index.html.erb -->
-
 <div class="container my-5">
   <h2 class="mb-4">Événements en attente de validation</h2>
 
@@ -22,8 +20,12 @@
               <td><%= l(event.start_date, format: :long) %></td>
               <td class="text-end d-flex justify-content-end gap-2">
                 <%= link_to "Voir", admin_event_submission_path(event), class: "btn btn-sm btn-outline-primary" %>
-                <%= link_to "Valider", admin_event_submission_path(event, event: { validated: true }), method: :patch, data: { confirm: "Valider cet événement ?" }, class: "btn btn-sm btn-success" %>
-                <%= link_to "Refuser", admin_event_submission_path(event, event: { validated: false }), method: :patch, data: { confirm: "Refuser cet événement ?" }, class: "btn btn-sm btn-danger" %>
+
+                <%= form_with model: event, url: admin_event_submission_path(event), method: :patch, local: true, class: "d-inline" do |f| %>
+                  <%= f.submit "Valider", name: "commit", value: "Valider", class: "btn btn-sm btn-success" %>
+                  <%= f.submit "Refuser", name: "commit", value: "Refuser", class: "btn btn-sm btn-danger" %>
+                <% end %>
+
               </td>
             </tr>
           <% end %>
