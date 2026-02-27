@@ -1,68 +1,109 @@
-<header class="bg-dark py-5">
-  <div class="container px-5">
+<header class="py-5 position-relative overflow-hidden" style="min-height: 420px; background-color: #020818;">
+
+  <!-- SVG Ville futuriste en arrière-plan -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 0;">
+    <%= image_tag "city-header.svg",
+          style: "width:100%; height:100%; object-fit:cover; object-position:center;",
+          alt: "" %>
+  </div>
+
+  <!-- Overlay gradient pour lisibilité du texte -->
+  <div class="position-absolute top-0 start-0 w-100 h-100" style="z-index: 1; background: linear-gradient(to bottom, rgba(2,8,24,0.25) 0%, rgba(2,8,24,0.45) 60%, rgba(2,8,24,0.78) 100%);"></div>
+
+  <!-- Contenu -->
+  <div class="container px-5 position-relative" style="z-index: 2;">
     <div class="row gx-5 justify-content-center">
       <div class="col-lg-6">
         <div class="text-center my-5">
-          <!-- Titre et sous-titre adaptés à ton projet d'événements -->
-          <h1 class="display-5 fw-bolder text-white mb-2">Les meilleurs événements de ta ville</h1>
-          <p class="lead text-white-50 mb-4">Découvre les événements près de chez toi, crée les tiens et rejoins notre communauté pour ne plus jamais t'ennuyer !</p>
-          
+
+          <!-- Badge -->
+          <span class="badge rounded-pill mb-3 px-3 py-2" style="background: rgba(0,229,255,0.12); border: 1px solid rgba(0,229,255,0.35); color: #00e5ff; font-size: 0.72rem; letter-spacing: 0.15em; text-transform: uppercase; font-weight: 600;">
+            ✦ Des événements près de chez toi
+          </span>
+
+          <!-- Titre -->
+          <h1 class="display-5 fw-bolder text-white mb-2" style="text-shadow: 0 0 60px rgba(168,85,247,0.5), 0 2px 20px rgba(0,0,0,0.8); letter-spacing: -0.02em;">
+            Les meilleurs événements
+            <span style="background: linear-gradient(135deg, #a855f7, #00e5ff); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;">
+              de ta ville
+            </span>
+          </h1>
+
+          <!-- Sous-titre -->
+          <p class="lead mb-4" style="color: rgba(200,215,255,0.75);">
+            Découvre les événements près de chez toi, crée les tiens et rejoins notre communauté pour ne plus jamais t'ennuyer&nbsp;!
+          </p>
+
+          <!-- Boutons -->
           <div class="d-grid gap-3 d-sm-flex justify-content-sm-center">
-            <!-- Bouton principal : Créer un événement -->
-            <%= link_to "Créer un événement", new_event_path, class: "btn btn-primary btn-lg px-4 me-sm-3" %>
-            
-            <!-- Bouton secondaire adaptatif (Devise) -->
+            <%= link_to "Créer un événement", new_event_path,
+                  class: "btn btn-lg px-4 me-sm-3 fw-semibold",
+                  style: "background: linear-gradient(135deg, #7c3aed, #00b8d9); border: none; color: white; box-shadow: 0 4px 20px rgba(124,58,237,0.4); border-radius: 50px;" %>
+
             <% if user_signed_in? %>
-              <%= link_to "Mon profil", user_path(current_user), class: "btn btn-outline-light btn-lg px-4" %>
+              <%= link_to "Mon profil", user_path(current_user),
+                    class: "btn btn-lg px-4",
+                    style: "background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 50px; backdrop-filter: blur(10px);" %>
             <% else %>
-              <%= link_to "S'inscrire", new_user_registration_path, class: "btn btn-outline-light btn-lg px-4" %>
+              <%= link_to "S'inscrire", new_user_registration_path,
+                    class: "btn btn-lg px-4",
+                    style: "background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.2); color: white; border-radius: 50px; backdrop-filter: blur(10px);" %>
             <% end %>
           </div>
+
         </div>
       </div>
     </div>
   </div>
+
+  <!-- Stats bar en bas du header -->
+  <div class="position-absolute bottom-0 start-0 w-100 text-center pb-3" style="z-index: 2; background: linear-gradient(to top, rgba(2,8,24,0.7), transparent);">
+    <div class="d-inline-flex gap-5">
+      <div>
+        <div class="fw-bold" style="color: #00e5ff; font-size: 1.1rem;"><%= @events.count %></div>
+        <div style="color: rgba(160,180,255,0.5); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;">Événements</div>
+      </div>
+      <div>
+        <div class="fw-bold" style="color: #a855f7; font-size: 1.1rem;"><%= @events.map(&:city).uniq.count rescue "–" %></div>
+        <div style="color: rgba(160,180,255,0.5); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;">Villes</div>
+      </div>
+      <div>
+        <div class="fw-bold" style="color: #ff6ec7; font-size: 1.1rem;"><%= User.count rescue "–" %></div>
+        <div style="color: rgba(160,180,255,0.5); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase;">Membres</div>
+      </div>
+    </div>
+  </div>
+
 </header>
+
 <!-- Section Événements -->
 <section class="py-5 border-bottom" id="features">
   <div class="container px-5 my-5">
     <div class="text-center mb-5">
       <h2 class="fw-bolder">🎉 Événements à venir</h2>
     </div>
-
     <div class="row gx-5">
       <% @events.each do |event| %>
         <div class="col-lg-4 mb-5">
-          <!-- Ajout de la structure Card avec un fond (bg-light), une ombre (shadow-sm) et des bords arrondis -->
           <div class="card h-100 border-0 shadow-sm bg-light rounded-4">
             <div class="card-body p-4">
-              
-              <!-- Affichage de la photo de l'événement ou de l'icône par défaut -->
               <% if event.photo.attached? %>
                 <%= image_tag event.photo, class: "img-fluid rounded-3 mb-4 w-100", style: "height: 200px; object-fit: cover;", alt: event.title %>
               <% else %>
-                <!-- Au cas où il n'y a pas de photo/erreur de chargement -->
                 <div class="bg-secondary bg-gradient text-white rounded-3 mb-4 w-100 d-flex align-items-center justify-content-center" style="height: 200px;">
                   <i class="bi bi-calendar-event" style="font-size: 3rem;"></i>
                 </div>
               <% end %>
-              
               <h2 class="h5 fw-bolder"><%= event.title %></h2>
-              
               <p class="text-muted mb-1 small">
                 <%= event.start_date.strftime("%d %B %Y à %H:%M") if event.start_date %>
               </p>
-              
               <p class="fw-bold text-primary mb-3">
                 <%= event.is_free? ? "Gratuit" : "#{event.price} €" %>
               </p>
-              
-              <!-- Ta description avec le length: 50 -->
               <p class="text-muted text-break mb-4">
                 <%= truncate(event.description, length: 30) %>
               </p>
-              
-              <!-- Le bouton transformé : on remplace "text-decoration-none" par "btn btn-primary" -->
               <%= link_to event_path(event), class: "btn btn-primary w-100" do %>
                 Voir l'événement <i class="bi bi-arrow-right ms-2"></i>
               <% end %>

@@ -1,0 +1,321 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1400 500" width="1400" height="500">
+  <defs>
+    <!-- Sky gradient -->
+    <linearGradient id="sky" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#020818"/>
+      <stop offset="40%" stop-color="#060d2e"/>
+      <stop offset="100%" stop-color="#0d1f5c"/>
+    </linearGradient>
+
+    <!-- Ground glow gradient -->
+    <linearGradient id="ground" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#0a1a4a"/>
+      <stop offset="100%" stop-color="#020818"/>
+    </linearGradient>
+
+    <!-- Neon street glow -->
+    <linearGradient id="streetGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#050e30" stop-opacity="0"/>
+      <stop offset="30%" stop-color="#1a3a8f" stop-opacity="0.3"/>
+      <stop offset="50%" stop-color="#5c2dd9" stop-opacity="0.5"/>
+      <stop offset="70%" stop-color="#1a3a8f" stop-opacity="0.3"/>
+      <stop offset="100%" stop-color="#050e30" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Blur effect for sides (vignette) -->
+    <radialGradient id="vignette" cx="50%" cy="50%" r="75%" fx="50%" fy="50%">
+      <stop offset="40%" stop-color="#000000" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.92"/>
+    </radialGradient>
+
+    <!-- Left blur overlay -->
+    <linearGradient id="leftBlur" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#020818" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#020818" stop-opacity="0"/>
+    </linearGradient>
+
+    <!-- Right blur overlay -->
+    <linearGradient id="rightBlur" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#020818" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#020818" stop-opacity="1"/>
+    </linearGradient>
+
+    <!-- Building glow filters -->
+    <filter id="neonBlue" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="neonCyan" x="-20%" y="-20%" width="140%" height="140%">
+      <feGaussianBlur stdDeviation="4" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="glowSoft" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur stdDeviation="8" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+    <filter id="blurSides" x="0%" y="0%" width="100%" height="100%">
+      <feGaussianBlur stdDeviation="12"/>
+    </filter>
+    <filter id="softGlow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur stdDeviation="6" result="blur"/>
+      <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+    </filter>
+
+    <!-- Window pattern -->
+    <pattern id="winPattern1" x="0" y="0" width="12" height="18" patternUnits="userSpaceOnUse">
+      <rect width="5" height="7" fill="#f0d070" fill-opacity="0.7" x="1" y="2"/>
+      <rect width="5" height="7" fill="#80c8ff" fill-opacity="0.5" x="7" y="2"/>
+      <rect width="5" height="7" fill="#f0d070" fill-opacity="0.4" x="1" y="12"/>
+      <rect width="5" height="7" fill="#000" fill-opacity="0.8" x="7" y="12"/>
+    </pattern>
+    <pattern id="winPattern2" x="0" y="0" width="10" height="14" patternUnits="userSpaceOnUse">
+      <rect width="4" height="5" fill="#00e5ff" fill-opacity="0.6" x="1" y="1"/>
+      <rect width="4" height="5" fill="#000" fill-opacity="0.9" x="6" y="1"/>
+      <rect width="4" height="5" fill="#ff6ec7" fill-opacity="0.5" x="1" y="8"/>
+      <rect width="4" height="5" fill="#00e5ff" fill-opacity="0.4" x="6" y="8"/>
+    </pattern>
+    <pattern id="winPattern3" x="0" y="0" width="8" height="12" patternUnits="userSpaceOnUse">
+      <rect width="3" height="4" fill="#a78bfa" fill-opacity="0.7" x="1" y="1"/>
+      <rect width="3" height="4" fill="#f0d070" fill-opacity="0.5" x="5" y="1"/>
+      <rect width="3" height="4" fill="#000" fill-opacity="0.8" x="1" y="7"/>
+      <rect width="3" height="4" fill="#a78bfa" fill-opacity="0.4" x="5" y="7"/>
+    </pattern>
+
+    <!-- Glow gradients for building tops -->
+    <linearGradient id="cyanGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#00e5ff" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#00e5ff" stop-opacity="0.8"/>
+    </linearGradient>
+    <linearGradient id="purpleGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#a855f7" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#a855f7" stop-opacity="0.9"/>
+    </linearGradient>
+    <linearGradient id="pinkGlow" x1="0%" y1="100%" x2="0%" y2="0%">
+      <stop offset="0%" stop-color="#ff6ec7" stop-opacity="0"/>
+      <stop offset="100%" stop-color="#ff6ec7" stop-opacity="0.7"/>
+    </linearGradient>
+
+    <!-- Reflection gradient -->
+    <linearGradient id="reflection" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" stop-color="#1a3a8f" stop-opacity="0.4"/>
+      <stop offset="100%" stop-color="#020818" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <!-- SKY BACKGROUND -->
+  <rect width="1400" height="500" fill="url(#sky)"/>
+
+  <!-- STARS -->
+  <g opacity="0.8">
+    <circle cx="80" cy="30" r="1" fill="white" opacity="0.9"/>
+    <circle cx="150" cy="55" r="0.8" fill="white" opacity="0.7"/>
+    <circle cx="220" cy="20" r="1.2" fill="white"/>
+    <circle cx="310" cy="45" r="0.7" fill="white" opacity="0.6"/>
+    <circle cx="380" cy="15" r="1" fill="white"/>
+    <circle cx="450" cy="60" r="0.8" fill="white" opacity="0.8"/>
+    <circle cx="540" cy="25" r="1.1" fill="white"/>
+    <circle cx="620" cy="40" r="0.7" fill="white" opacity="0.7"/>
+    <circle cx="700" cy="10" r="1" fill="white"/>
+    <circle cx="780" cy="50" r="0.9" fill="white" opacity="0.8"/>
+    <circle cx="860" cy="30" r="1.2" fill="white"/>
+    <circle cx="940" cy="15" r="0.8" fill="white" opacity="0.6"/>
+    <circle cx="1020" cy="45" r="1" fill="white"/>
+    <circle cx="1100" cy="25" r="0.7" fill="white" opacity="0.9"/>
+    <circle cx="1180" cy="55" r="1.1" fill="white"/>
+    <circle cx="1260" cy="20" r="0.8" fill="white" opacity="0.7"/>
+    <circle cx="1340" cy="40" r="1" fill="white"/>
+    <!-- Small twinkling stars -->
+    <circle cx="120" cy="70" r="0.6" fill="#a0d8ff" opacity="0.5"/>
+    <circle cx="500" cy="80" r="0.5" fill="#ffd0a0" opacity="0.6"/>
+    <circle cx="900" cy="65" r="0.6" fill="white" opacity="0.4"/>
+    <circle cx="1200" cy="75" r="0.5" fill="#c0a0ff" opacity="0.5"/>
+  </g>
+
+  <!-- MOON glow -->
+  <circle cx="700" cy="60" r="35" fill="#1a3a8f" opacity="0.3" filter="url(#glowSoft)"/>
+  <circle cx="700" cy="60" r="22" fill="#e8f4ff" opacity="0.15"/>
+  <circle cx="700" cy="60" r="15" fill="#f0f8ff" opacity="0.1"/>
+
+  <!-- ===================== BACKGROUND BUILDINGS (far, dark) ===================== -->
+  <!-- Far background - very dim blue -->
+  <rect x="0" y="220" width="60" height="280" fill="#0a1535" opacity="0.5"/>
+  <rect x="50" y="190" width="45" height="310" fill="#0d1a3e" opacity="0.5"/>
+  <rect x="90" y="240" width="55" height="260" fill="#091230" opacity="0.5"/>
+  <rect x="130" y="200" width="40" height="300" fill="#0a1535" opacity="0.4"/>
+
+  <rect x="1240" y="200" width="55" height="300" fill="#0a1535" opacity="0.5"/>
+  <rect x="1285" y="230" width="50" height="270" fill="#0d1a3e" opacity="0.5"/>
+  <rect x="1325" y="195" width="45" height="305" fill="#091230" opacity="0.4"/>
+  <rect x="1360" y="215" width="40" height="285" fill="#0a1535" opacity="0.5"/>
+
+  <!-- ===================== MID BUILDINGS ===================== -->
+
+  <!-- LEFT CLUSTER -->
+  <!-- Tall slim tower left -->
+  <rect x="60" y="100" width="55" height="400" fill="#0d1f5c"/>
+  <rect x="60" y="100" width="55" height="400" fill="url(#winPattern3)" opacity="0.7"/>
+  <rect x="60" y="100" width="3" height="400" fill="#00e5ff" opacity="0.6" filter="url(#neonCyan)"/>
+  <rect x="112" y="100" width="3" height="400" fill="#00e5ff" opacity="0.6" filter="url(#neonCyan)"/>
+
+  <!-- Medium building -->
+  <rect x="110" y="160" width="80" height="340" fill="#0f2260"/>
+  <rect x="110" y="160" width="80" height="340" fill="url(#winPattern1)" opacity="0.6"/>
+
+  <!-- Wide low building -->
+  <rect x="185" y="250" width="110" height="250" fill="#0a1840"/>
+  <rect x="185" y="250" width="110" height="250" fill="url(#winPattern2)" opacity="0.5"/>
+  <rect x="185" y="248" width="110" height="4" fill="#a855f7" opacity="0.8" filter="url(#softGlow)"/>
+
+  <!-- Skyscraper with cyan accent -->
+  <rect x="130" y="80" width="60" height="420" fill="#101d50"/>
+  <rect x="130" y="80" width="60" height="420" fill="url(#winPattern3)" opacity="0.7"/>
+  <rect x="130" y="80" width="60" height="3" fill="#00e5ff" filter="url(#neonCyan)"/>
+  <!-- Antenna -->
+  <rect x="158" y="40" width="4" height="42" fill="#00e5ff" opacity="0.9" filter="url(#neonCyan)"/>
+  <circle cx="160" cy="38" r="5" fill="#00e5ff" opacity="0.8" filter="url(#glowSoft)"/>
+
+  <!-- RIGHT CLUSTER -->
+  <!-- Tall tower right -->
+  <rect x="1260" y="90" width="65" height="410" fill="#0d1f5c"/>
+  <rect x="1260" y="90" width="65" height="410" fill="url(#winPattern2)" opacity="0.7"/>
+  <rect x="1260" y="88" width="65" height="4" fill="#ff6ec7" opacity="0.9" filter="url(#softGlow)"/>
+  <!-- Antenna -->
+  <rect x="1290" y="50" width="4" height="42" fill="#ff6ec7" opacity="0.9" filter="url(#neonCyan)"/>
+  <circle cx="1292" cy="48" r="5" fill="#ff6ec7" opacity="0.8" filter="url(#glowSoft)"/>
+
+  <rect x="1215" y="150" width="55" height="350" fill="#0f2260"/>
+  <rect x="1215" y="150" width="55" height="350" fill="url(#winPattern1)" opacity="0.6"/>
+
+  <rect x="1170" y="200" width="50" height="300" fill="#0a1840"/>
+  <rect x="1170" y="200" width="50" height="300" fill="url(#winPattern3)" opacity="0.5"/>
+
+  <rect x="1115" y="170" width="60" height="330" fill="#101d50"/>
+  <rect x="1115" y="170" width="60" height="330" fill="url(#winPattern2)" opacity="0.6"/>
+  <rect x="1115" y="168" width="60" height="4" fill="#a855f7" opacity="0.9" filter="url(#softGlow)"/>
+
+  <!-- ===================== MAIN CENTER SKYSCRAPERS ===================== -->
+
+  <!-- CENTER-LEFT big tower -->
+  <rect x="350" y="60" width="85" height="440" fill="#0e2060"/>
+  <rect x="350" y="60" width="85" height="440" fill="url(#winPattern2)" opacity="0.8"/>
+  <!-- Neon left edge -->
+  <rect x="350" y="60" width="4" height="440" fill="#00e5ff" opacity="0.7" filter="url(#neonCyan)"/>
+  <!-- Top glow -->
+  <rect x="350" y="55" width="85" height="8" fill="#00e5ff" opacity="0.9" filter="url(#softGlow)"/>
+  <!-- Antenna -->
+  <rect x="390" y="18" width="5" height="44" fill="#00e5ff" opacity="1" filter="url(#neonCyan)"/>
+  <circle cx="392" cy="16" r="7" fill="#00e5ff" opacity="0.9" filter="url(#glowSoft)"/>
+
+  <!-- Medium building left-center -->
+  <rect x="290" y="140" width="70" height="360" fill="#0c1b50"/>
+  <rect x="290" y="140" width="70" height="360" fill="url(#winPattern3)" opacity="0.7"/>
+  <rect x="290" y="138" width="70" height="5" fill="#a855f7" opacity="0.8" filter="url(#softGlow)"/>
+
+  <rect x="430" y="180" width="65" height="320" fill="#0f2055"/>
+  <rect x="430" y="180" width="65" height="320" fill="url(#winPattern1)" opacity="0.6"/>
+
+  <!-- TALLEST CENTER TOWER -->
+  <rect x="570" y="20" width="100" height="480" fill="#111e5a"/>
+  <rect x="570" y="20" width="100" height="480" fill="url(#winPattern2)" opacity="0.8"/>
+  <!-- Neon edges -->
+  <rect x="570" y="20" width="5" height="480" fill="#a855f7" opacity="0.8" filter="url(#softGlow)"/>
+  <rect x="665" y="20" width="5" height="480" fill="#a855f7" opacity="0.8" filter="url(#softGlow)"/>
+  <!-- Top accent -->
+  <rect x="570" y="15" width="100" height="8" fill="#a855f7" opacity="1" filter="url(#glowSoft)"/>
+  <!-- Antenna spire -->
+  <rect x="617" y="-20" width="6" height="38" fill="#ff6ec7" opacity="1" filter="url(#neonCyan)"/>
+  <circle cx="620" cy="-22" r="8" fill="#ff6ec7" opacity="0.9" filter="url(#glowSoft)"/>
+  <!-- Horizontal bands -->
+  <rect x="570" y="150" width="100" height="4" fill="#ff6ec7" opacity="0.5"/>
+  <rect x="570" y="280" width="100" height="4" fill="#00e5ff" opacity="0.5"/>
+  <rect x="570" y="390" width="100" height="4" fill="#a855f7" opacity="0.5"/>
+
+  <!-- Second tall tower -->
+  <rect x="700" y="50" width="90" height="450" fill="#0e1f5e"/>
+  <rect x="700" y="50" width="90" height="450" fill="url(#winPattern3)" opacity="0.8"/>
+  <rect x="786" y="50" width="5" height="450" fill="#00e5ff" opacity="0.7" filter="url(#neonCyan)"/>
+  <rect x="700" y="44" width="90" height="8" fill="#00e5ff" opacity="0.9" filter="url(#softGlow)"/>
+  <!-- Antenna -->
+  <rect x="742" y="8" width="5" height="44" fill="#00e5ff" opacity="1" filter="url(#neonCyan)"/>
+  <circle cx="744" cy="6" r="7" fill="#00e5ff" opacity="0.9" filter="url(#glowSoft)"/>
+
+  <!-- Right of center cluster -->
+  <rect x="820" y="90" width="75" height="410" fill="#0d1d58"/>
+  <rect x="820" y="90" width="75" height="410" fill="url(#winPattern1)" opacity="0.7"/>
+  <rect x="820" y="85" width="75" height="7" fill="#ff6ec7" opacity="0.8" filter="url(#softGlow)"/>
+  <!-- Antenna -->
+  <rect x="854" y="45" width="5" height="42" fill="#ff6ec7" opacity="1" filter="url(#neonCyan)"/>
+  <circle cx="856" cy="43" r="6" fill="#ff6ec7" opacity="0.9" filter="url(#glowSoft)"/>
+
+  <rect x="885" y="130" width="70" height="370" fill="#0c1c56"/>
+  <rect x="885" y="130" width="70" height="370" fill="url(#winPattern2)" opacity="0.7"/>
+  <rect x="885" y="127" width="70" height="6" fill="#a855f7" opacity="0.7" filter="url(#softGlow)"/>
+
+  <!-- Additional buildings for density -->
+  <rect x="960" y="170" width="60" height="330" fill="#0d1f5c"/>
+  <rect x="960" y="170" width="60" height="330" fill="url(#winPattern3)" opacity="0.6"/>
+
+  <rect x="1010" y="120" width="75" height="380" fill="#101e5a"/>
+  <rect x="1010" y="120" width="75" height="380" fill="url(#winPattern1)" opacity="0.7"/>
+  <rect x="1010" y="116" width="75" height="6" fill="#00e5ff" opacity="0.6" filter="url(#softGlow)"/>
+  <rect x="1045" y="78" width="4" height="42" fill="#00e5ff" opacity="0.9" filter="url(#neonCyan)"/>
+  <circle cx="1047" cy="76" r="5" fill="#00e5ff" opacity="0.8" filter="url(#glowSoft)"/>
+
+  <rect x="1080" y="155" width="45" height="345" fill="#0a1a4a"/>
+  <rect x="1080" y="155" width="45" height="345" fill="url(#winPattern2)" opacity="0.6"/>
+
+  <rect x="490" y="150" width="85" height="350" fill="#0e2158"/>
+  <rect x="490" y="150" width="85" height="350" fill="url(#winPattern3)" opacity="0.7"/>
+  <rect x="490" y="147" width="85" height="5" fill="#ff6ec7" opacity="0.6" filter="url(#softGlow)"/>
+
+  <rect x="235" y="200" width="60" height="300" fill="#0c1c50"/>
+  <rect x="235" y="200" width="60" height="300" fill="url(#winPattern1)" opacity="0.6"/>
+
+  <!-- ===================== GROUND & STREET ===================== -->
+  <rect x="0" y="420" width="1400" height="80" fill="url(#ground)"/>
+
+  <!-- Street glow -->
+  <rect x="0" y="418" width="1400" height="6" fill="url(#streetGlow)"/>
+
+  <!-- Street reflections (puddles / wet road effect) -->
+  <ellipse cx="700" cy="445" rx="500" ry="18" fill="url(#streetGlow)" opacity="0.4"/>
+  <ellipse cx="350" cy="455" rx="200" ry="10" fill="#5c2dd9" opacity="0.08"/>
+  <ellipse cx="1050" cy="450" rx="200" ry="10" fill="#00e5ff" opacity="0.07"/>
+
+  <!-- Neon street lines -->
+  <rect x="0" y="422" width="1400" height="2" fill="#1a3a8f" opacity="0.5"/>
+  <rect x="0" y="426" width="1400" height="1" fill="#00e5ff" opacity="0.2"/>
+
+  <!-- Street lights / neon signs glow on ground -->
+  <ellipse cx="392" cy="430" rx="40" ry="8" fill="#00e5ff" opacity="0.15" filter="url(#glowSoft)"/>
+  <ellipse cx="620" cy="430" rx="50" ry="8" fill="#a855f7" opacity="0.15" filter="url(#glowSoft)"/>
+  <ellipse cx="744" cy="430" rx="45" ry="8" fill="#00e5ff" opacity="0.15" filter="url(#glowSoft)"/>
+  <ellipse cx="856" cy="430" rx="40" ry="8" fill="#ff6ec7" opacity="0.15" filter="url(#glowSoft)"/>
+
+  <!-- ===================== ATMOSPHERE / HAZE ===================== -->
+  <!-- Low fog layer -->
+  <rect x="0" y="380" width="1400" height="60" fill="#0a1840" opacity="0.35"/>
+  <rect x="0" y="400" width="1400" height="40" fill="#060d2e" opacity="0.5"/>
+
+  <!-- Building base dark overlap for depth -->
+  <rect x="0" y="460" width="1400" height="40" fill="#020818" opacity="0.9"/>
+
+  <!-- ===================== VIGNETTE & SIDE BLUR ===================== -->
+  <!-- Vignette overlay -->
+  <rect width="1400" height="500" fill="url(#vignette)"/>
+
+  <!-- LEFT blur fade (strong) -->
+  <rect x="0" y="0" width="280" height="500" fill="url(#leftBlur)" filter="url(#blurSides)"/>
+  <rect x="0" y="0" width="180" height="500" fill="#020818" opacity="0.75"/>
+
+  <!-- RIGHT blur fade (strong) -->
+  <rect x="1120" y="0" width="280" height="500" fill="url(#rightBlur)" filter="url(#blurSides)"/>
+  <rect x="1220" y="0" width="180" height="500" fill="#020818" opacity="0.75"/>
+
+  <!-- TOP fade to dark -->
+  <linearGradient id="topFade" x1="0%" y1="0%" x2="0%" y2="100%">
+    <stop offset="0%" stop-color="#010610" stop-opacity="0.6"/>
+    <stop offset="100%" stop-color="#010610" stop-opacity="0"/>
+  </linearGradient>
+  <rect x="0" y="0" width="1400" height="120" fill="url(#topFade)"/>
+</svg>
