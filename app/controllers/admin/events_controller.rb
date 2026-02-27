@@ -15,7 +15,7 @@ before_action :set_event, only: [:show, :edit, :update, :destroy]
   def update
   @event = Event.find(params[:id])
     if @event.update(event_params)
-      redirect_to admin_event_path(@event), notice: "Événement mis à jour !"
+      redirect_to admin_events_path, notice: "Événement mis à jour !"
     else
       render :edit
     end

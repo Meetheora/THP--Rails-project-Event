@@ -21,12 +21,14 @@
             <% end %>
           </td>
           <td class="text-end">
+            <!-- Voir -->
             <%= link_to "Voir", admin_user_path(user), class: "btn btn-sm btn-outline-primary" %>
+            <!-- Modifier -->
             <%= link_to "Modifier", edit_admin_user_path(user), class: "btn btn-sm btn-outline-warning" %>
-            <%= link_to "Supprimer", admin_user_path(user),
-                  method: :delete,
-                  data: { confirm: "Confirmer ?" },
-                  class: "btn btn-sm btn-outline-danger" %>
+            <!-- Supprimer -->
+            <%= form_with model: [:admin, user], method: :delete, data: { confirm: "Confirmer la suppression ?" }, local: true, class: "d-inline" do |f| %>
+              <%= f.submit "Supprimer", class: "btn btn-sm btn-outline-danger" %>
+            <% end %>
           </td>
         </tr>
       <% end %>

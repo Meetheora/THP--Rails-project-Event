@@ -3,6 +3,9 @@
     <div class="card-body">
       <h2><%= @event.title %></h2>
       <p><%= @event.description %></p>
+      <p>Prix : 
+        <%= @event.price %> €.
+      </p>
       <p>Statut : 
         <%= @event.validated? ? "Validé" : "En attente" %>
       </p>
