@@ -13,4 +13,16 @@ Rails.application.routes.draw do
   resources :users, only: [:show] do
     resources :avatars, only: [:create]
   end
+
+  namespace :admin do
+    get "event_submissions/index"
+    get "event_submissions/show"
+    get "event_submissions/edit"
+    get "event_submissions/update"
+    get "dashboard/index"
+    root "dashboard#index"
+    resources :users
+    resources :events
+    resources :event_submissions, only: [:index, :show, :edit, :update]
+  end
 end
