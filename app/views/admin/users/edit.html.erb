@@ -1,0 +1,9 @@
+<div class="container py-5">
+  <div class="card shadow border-0">
+    <div class="card-body">
+      <h2 class="mb-4">Modifier utilisateur</h2>
+      <%= render "form", user: @user %>
+      <%= link_to "Retour", admin_users_path, class: "btn btn-outline-secondary mt-3" %>
+    </div>
+  </div>
+</div>

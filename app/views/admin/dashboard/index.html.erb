@@ -1,2 +1,39 @@
-<h1>Admin::Dashboard#index</h1>
-<p>Find me in app/views/admin/dashboard/index.html.erb</p>
+<div class="container py-5">
+  <h1 class="fw-bold mb-4">Dashboard Administrateur</h1>
+
+  <div class="row g-4">
+
+    <div class="col-md-4">
+      <div class="card shadow border-0 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Utilisateurs</h5>
+          <p class="display-6 fw-bold"><%= @users_count %></p>
+          <%= link_to "Gérer", admin_users_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow border-0 text-center">
+        <div class="card-body">
+          <h5 class="card-title">Événements</h5>
+          <p class="display-6 fw-bold"><%= @events_count %></p>
+          <%= link_to "Gérer", admin_events_path, class: "btn btn-outline-primary" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="col-md-4">
+      <div class="card shadow border-0 text-center">
+        <div class="card-body">
+          <h5 class="card-title text-warning">En attente</h5>
+          <p class="display-6 fw-bold text-warning"><%= @pending_events %></p>
+          <%= link_to "Valider",
+                admin_event_submissions_path,
+                class: "btn btn-warning text-dark" %>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

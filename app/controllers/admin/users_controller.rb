@@ -1,4 +1,4 @@
-class Admin::UsersController < ApplicationController
+class Admin::UsersController < Admin::BaseController
   def index
     @users = User.all
   end
@@ -30,6 +30,6 @@ class Admin::UsersController < ApplicationController
 
   def user_params
     # On autorise l'admin à modifier ces champs
-    params.require(:user).permit(:first_name, :last_name, :description, :email, :require_admin)
+    params.require(:user).permit(:first_name, :last_name, :description, :email, :admin)
   end
 end

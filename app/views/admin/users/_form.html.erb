@@ -1,0 +1,15 @@
+<%= form_with model: [:admin, user], local: true do |f| %>
+
+  <div class="mb-3">
+    <%= f.label :email, class: "form-label" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+
+  <div class="form-check mb-3">
+    <%= f.check_box :admin, class: "form-check-input" %>
+    <%= f.label :admin, class: "form-check-label" %>
+  </div>
+
+  <%= f.submit "Enregistrer", class: "btn btn-primary" %>
+
+<% end %>

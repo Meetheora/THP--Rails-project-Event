@@ -1,13 +1,7 @@
-class Admin::DashboardController < ApplicationController
-  before_action :authenticate_user!
-  before_action :require_admin
-
+class Admin::DashboardController < Admin::BaseController
   def index
-  end
-
-  private
-
-  def require_admin
-    redirect_to root_path, alert: "Accès refusé" unless current_user&.admin?
+  @users_count = User.count
+  @events_count = Event.count
+  @pending_events = Event.where(validated: false).count
   end
 end

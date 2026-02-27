@@ -1,0 +1,14 @@
+<div class="container py-5">
+  <div class="card shadow border-0">
+    <div class="card-body">
+      <h2><%= @event.title %></h2>
+      <p><%= @event.description %></p>
+      <p>Statut : 
+        <%= @event.validated? ? "Validé" : "En attente" %>
+      </p>
+
+      <%= link_to "Modifier", edit_admin_event_path(@event), class: "btn btn-warning" %>
+      <%= link_to "Retour", admin_events_path, class: "btn btn-outline-secondary" %>
+    </div>
+  </div>
+</div>
