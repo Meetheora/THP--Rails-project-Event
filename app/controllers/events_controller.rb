@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :create, :edit, :update, :destroy]
   before_action :authorize_admin!, only: [:edit, :update, :destroy]
   def index
-    @events = Event.all
+    @events = Event.where(validated: true)
   end
 
   def new
@@ -21,6 +21,15 @@ class EventsController < ApplicationController
   end
   def show
     @event = Event.find(params[:id])
+    if @event.validated == true
+
+    elsif user_signed_in? && current_user == @event.admin # double protection / bonne pratique
+      flash.now[:notice] = "Aperçu : Cet événement est en attente de validation par l'équipe."
+
+    else
+      redirect_to root_path, alert: "Cet événement n'est pas encore validé ou n'existe pas."
+    end
+
     if params[:success] == "true"
       # On vérifie qu'il n'est pas déjà inscrit pour éviter les doublons si on recharge la page
       unless @event.participants.include?(current_user)

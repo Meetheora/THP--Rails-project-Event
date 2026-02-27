@@ -15,10 +15,6 @@ Rails.application.routes.draw do
   end
 
   namespace :admin do
-    get "event_submissions/index"
-    get "event_submissions/show"
-    get "event_submissions/edit"
-    get "event_submissions/update"
     get "dashboard/index"
     root "dashboard#index"
     resources :users
